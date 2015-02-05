@@ -1,0 +1,245 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D6760BE11A7C044D00B74F6D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6760BE01A7C044D00B74F6D /* main.cpp */; };
+		D6760BE91A7C050400B74F6D /* mpHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6760BE71A7C050400B74F6D /* mpHeap.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D6760BDB1A7C044D00B74F6D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D6760BDD1A7C044D00B74F6D /* Motion Path Planner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Motion Path Planner"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6760BE01A7C044D00B74F6D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D6760BE71A7C050400B74F6D /* mpHeap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mpHeap.cpp; sourceTree = "<group>"; };
+		D6760BE81A7C050400B74F6D /* mpHeap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mpHeap.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D6760BDA1A7C044D00B74F6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D6760BD41A7C044C00B74F6D = {
+			isa = PBXGroup;
+			children = (
+				D6760BDF1A7C044D00B74F6D /* Motion Path Planner */,
+				D6760BDE1A7C044D00B74F6D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D6760BDE1A7C044D00B74F6D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6760BDD1A7C044D00B74F6D /* Motion Path Planner */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6760BDF1A7C044D00B74F6D /* Motion Path Planner */ = {
+			isa = PBXGroup;
+			children = (
+				D6760BE01A7C044D00B74F6D /* main.cpp */,
+				D6760BE71A7C050400B74F6D /* mpHeap.cpp */,
+				D6760BE81A7C050400B74F6D /* mpHeap.h */,
+			);
+			path = "Motion Path Planner";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D6760BDC1A7C044D00B74F6D /* Motion Path Planner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6760BE41A7C044D00B74F6D /* Build configuration list for PBXNativeTarget "Motion Path Planner" */;
+			buildPhases = (
+				D6760BD91A7C044D00B74F6D /* Sources */,
+				D6760BDA1A7C044D00B74F6D /* Frameworks */,
+				D6760BDB1A7C044D00B74F6D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Motion Path Planner";
+			productName = "Motion Path Planner";
+			productReference = D6760BDD1A7C044D00B74F6D /* Motion Path Planner */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D6760BD51A7C044D00B74F6D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = UPenn;
+				TargetAttributes = {
+					D6760BDC1A7C044D00B74F6D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = D6760BD81A7C044D00B74F6D /* Build configuration list for PBXProject "Motion Path Planner" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D6760BD41A7C044C00B74F6D;
+			productRefGroup = D6760BDE1A7C044D00B74F6D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D6760BDC1A7C044D00B74F6D /* Motion Path Planner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D6760BD91A7C044D00B74F6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6760BE91A7C050400B74F6D /* mpHeap.cpp in Sources */,
+				D6760BE11A7C044D00B74F6D /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D6760BE21A7C044D00B74F6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D6760BE31A7C044D00B74F6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D6760BE51A7C044D00B74F6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D6760BE61A7C044D00B74F6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D6760BD81A7C044D00B74F6D /* Build configuration list for PBXProject "Motion Path Planner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6760BE21A7C044D00B74F6D /* Debug */,
+				D6760BE31A7C044D00B74F6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6760BE41A7C044D00B74F6D /* Build configuration list for PBXNativeTarget "Motion Path Planner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6760BE51A7C044D00B74F6D /* Debug */,
+				D6760BE61A7C044D00B74F6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D6760BD51A7C044D00B74F6D /* Project object */;
+}
