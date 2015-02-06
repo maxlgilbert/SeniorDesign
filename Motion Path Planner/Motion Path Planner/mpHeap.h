@@ -16,9 +16,16 @@ template <class T> class mpHeap{
 private:
     std::vector<T> _array;
     void Heapify(int index){
-        T minChild = _array[2*index + 1];
-        if (_array[2*index + 2] < minChild) minChild = _array[2*index+2];
-        
+        int minChildIndex = 2*index + 1;
+        if (minChildIndex < _array.size()){
+            if (2*index + 2 < _array.size() && _array[2*index + 2] < _array[minChildIndex]) minChildIndex = 2*index+2;
+            if (_array[minChildIndex] < _array[index]){
+                T temp = _array[index];
+                _array[index] = _array[minChildIndex] ;
+                _array[minChildIndex]  = temp;
+                Heapify(minChildIndex);
+            }
+        }
     }
     int size = 0;
 public:
@@ -42,9 +49,20 @@ public:
         }
     }
     void RemoveAt (int index){
-        
+        T lastElement = _array[_array.size()-1];
+        _array.pop_back();
+        _array[index] = lastElement;
+        Heapify(index);
     }
-    void RemoveElement (T element);
+    void RemoveElement (T element){
+        for (int i = 0; i < _array.size(); i++) {
+            if (_array[i]==element) {
+                RemoveAt(i);
+                return;
+            }
+        }
+        //TOD throw error
+    }
     T LookAt (){
         if (_array.size() > 0){
             return _array[0];

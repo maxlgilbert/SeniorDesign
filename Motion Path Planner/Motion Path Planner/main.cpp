@@ -16,6 +16,14 @@ int main(int argc, const char * argv[]) {
     minHeap.Add(1);
     minHeap.Add(3);
     minHeap.Add(5);
-    std::cout << minHeap.LookAt();
+    minHeap.Add(5);
+    std::cout << minHeap.LookAt()<<std::endl;
+    minHeap.RemoveAt(0);
+    std::cout << minHeap.LookAt()<<std::endl;
+    minHeap.RemoveElement(5);
+    std::cout << minHeap.Extract()<<std::endl;
+    std::cout << minHeap.Extract()<<std::endl;
+    std::cout << minHeap.Extract()<<std::endl;
+    std::cout << minHeap.LookAt()<<std::endl;
     return 0;
 }

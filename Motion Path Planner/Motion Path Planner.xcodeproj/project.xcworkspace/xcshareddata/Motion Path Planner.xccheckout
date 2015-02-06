@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>53B40D6C-B153-4981-9E10-435F83EA0E69</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Motion Path Planner</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2B34347A3EEF58F54247D7EA2AF09341B00446BF</key>
+		<string>https://github.com/maxlgilbert/SeniorDesign.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Motion Path Planner/Motion Path Planner.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2B34347A3EEF58F54247D7EA2AF09341B00446BF</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/maxlgilbert/SeniorDesign.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2B34347A3EEF58F54247D7EA2AF09341B00446BF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2B34347A3EEF58F54247D7EA2AF09341B00446BF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SeniorDesign</string>
+		</dict>
+	</array>
+</dict>
+</plist>
