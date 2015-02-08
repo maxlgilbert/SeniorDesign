@@ -32,6 +32,8 @@ public class Robot : MonoBehaviour {
 	private string _robotInfo = "";
 	private List<RobotLink> _skippedLinks;
 
+	public GameObject meshObject;
+
 	// Use this for initialization
 	void Awake () {
 		_chains = new List<Chain>();
@@ -86,7 +88,7 @@ public class Robot : MonoBehaviour {
 			if (child != null) {
 				child.parentJoint = joint;
 			}
-			RotationLimitHinge rLH = null;
+			//RotationLimitHinge rLH = null;
 			bool skipped = false;
 			if (joint.originXYZ == new Vector3()) {
 				skipped = true;
@@ -94,15 +96,15 @@ public class Robot : MonoBehaviour {
 				_skippedLinks.Add(child);
 				//Debug.LogError(child.name);
 			}
-			if (parent.name.Equals("pelvis")) {
+			/*if (parent.name.Equals("pelvis")) {
 				rLH = parent.gameObject.AddComponent<RotationLimitHinge>() as RotationLimitHinge; //TODO parent or child?
 				rLH.min = 0.0f;
 				rLH.max = 0.0f;
-				rLH.axis = new Vector3(0.0f,0.0f,2.0f);
+				rLH.axis = new Vector3(0.0f,0.0f,1.0f);
 				_rotationLimits.Add(rLH);
 				parent.rotationLimit = rLH;
 				//parent.gameObject.transform.rotation = Quaternion.Euler(-90.0f,-180.0f,0.0f);
-			}
+			}*/
 			if (child!=null) 
 			{
 				if (!skipped) {
@@ -163,7 +165,7 @@ public class Robot : MonoBehaviour {
 		_FABRIKRootSolver = _FABRIKRoot.GetIKSolver() as IKSolverFABRIKRoot;
 		Chain rootChain = new Chain();
 		Chain kinematicChain =  CreateKinematicChain(_root, rootChain);
-		/*_FABRIKChain = new List<FABRIKChain>();
+		_FABRIKChain = new List<FABRIKChain>();
 		LinkMultipleKinematicChains(kinematicChain);
 		_FABRIKRootSolver.chains = new FABRIKChain[_FABRIKChain.Count];
 		for (int i = 0; i < _FABRIKChain.Count; i++) {
@@ -174,7 +176,7 @@ public class Robot : MonoBehaviour {
 			}
 			_FABRIKChain[i].children = indexArray;
 			_FABRIKRootSolver.chains[i] = _FABRIKChain[i];
-		}*/
+		}
 	}
 
 	public void CreateMesh(RobotLink parentLink) {
@@ -184,12 +186,12 @@ public class Robot : MonoBehaviour {
 				childLink.gameObject.transform.parent = parentLink.gameObject.transform;
 				childLink.gameObject.transform.localRotation = Quaternion.Euler(childLink.parentJoint.originRPY);
 				childLink.gameObject.transform.localPosition = childLink.parentJoint.originXYZ;
-				RotationLimitHinge rLH = childLink.gameObject.AddComponent<RotationLimitHinge>() as RotationLimitHinge; //TODO parent or child?
+				RotationLimitHinge rLH = parentLink.gameObject.AddComponent<RotationLimitHinge>() as RotationLimitHinge; //TODO parent or child?
 				rLH.min = childLink.parentJoint.limitMin*180.0f/Mathf.PI;
 				rLH.max = childLink.parentJoint.limitMax*180.0f/Mathf.PI;
 
 				// Set axis of rotation
-				Vector4 homogenousAngle = new Vector4(childLink.parentJoint.axisXYZ.x,
+				/*Vector4 homogenousAngle = new Vector4(childLink.parentJoint.axisXYZ.x,
 				                                      childLink.parentJoint.axisXYZ.y,
 				                                      childLink.parentJoint.axisXYZ.z,
 				                                      0);
@@ -220,9 +222,12 @@ public class Robot : MonoBehaviour {
 				homogenousAngle= parentLink.rotationTransformation*homogenousAngle;
 				rLH.axis.x = homogenousAngle.x;
 				rLH.axis.y = homogenousAngle.y;
-				rLH.axis.z = homogenousAngle.z;
+				rLH.axis.z = homogenousAngle.z;*/
 				//childLink.parentJoint.axisXYZ = rLH.axis;
 				//rLH.axis = childLink.parentJoint.axisXYZ;
+				rLH.axis.x = childLink.parentJoint.axisXYZ.x;
+				rLH.axis.y = childLink.parentJoint.axisXYZ.y;
+				rLH.axis.z = childLink.parentJoint.axisXYZ.z;
 				//_rotationLimits.Add(rLH);
 				childLink.rotationLimit = rLH;
 				CreateMesh(childLink);
@@ -291,23 +296,23 @@ public class Robot : MonoBehaviour {
 			_fabriks.Add(fabrik);
 			solver = fabrik.GetIKSolver() as IKSolverFABRIK;
 		}
-		RobotLink child = root;
+		RobotLink parent = root;
 		List<RobotLink> progeny = new List<RobotLink>();
-		progeny.Add(child);
+		progeny.Add(parent);
 		bool looping = true;
 		while (looping) {
-			List<RobotLink> children = child.children;
+			List<RobotLink> children = parent.children;
 			if(children.Count == 0) {
 				looping = false;
 				//progeny.Add(child);
 				//Debug.LogError (child.name);
 			} else if (children.Count == 1 || forceToChild != -1){
 				if (forceToChild == -1) {
-					child = children[0];
-					progeny.Add(child);
+					parent = children[0];
+					progeny.Add(parent);
 				} else {
-					child = children[forceToChild];
-					progeny.Add(child);
+					parent = children[forceToChild];
+					progeny.Add(parent);
 					forceToChild = -1;
 				}
 			} else if (children.Count > 1){
@@ -319,15 +324,16 @@ public class Robot : MonoBehaviour {
 					GameObject chainBranch = new GameObject();
 					chainBranch.transform.parent = gameObject.transform;
 					//progeny.Add(child); //TODO
-					chainBranch.gameObject.name = child.name + j;
+					chainBranch.gameObject.name = parent.name + j;
 					RobotLink newRoot = chainBranch.AddComponent<RobotLink>() as RobotLink;
-					newRoot.parent = child;//.parent;
+					newRoot.parent = parent;//.parent;
 					//Rigidbody rb2 = newRoot.gameObject.AddComponent<Rigidbody>() as Rigidbody;
 					//rb2.useGravity = false;
 					//FixedJoint fJ = rb1.gameObject.AddComponent<FixedJoint> () as FixedJoint;
 					//fJ.connectedBody = rb2;
-					newRoot.gameObject.transform.position = child.gameObject.transform.position;
-					RotationLimitHinge prevRLH = child.rotationLimit;//child.gameObject.GetComponent<RotationLimitHinge>() as RotationLimitHinge;
+					newRoot.gameObject.transform.position = parent.gameObject.transform.position;
+					RotationLimitHinge prevRLH = children[j].rotationLimit;//child.gameObject.GetComponent<RotationLimitHinge>() as RotationLimitHinge;
+					//Debug.LogError(child);
 					if ( prevRLH != null) {
 						RotationLimitHinge currrRLH =  newRoot.gameObject.AddComponent<RotationLimitHinge>() as RotationLimitHinge;
 						currrRLH.min = prevRLH.min;

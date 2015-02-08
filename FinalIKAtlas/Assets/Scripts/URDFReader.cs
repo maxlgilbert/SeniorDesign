@@ -21,7 +21,8 @@ public class URDFReader : MonoBehaviour
 	public static URDFReader instance;
 	private char[] ignoreCharacters;
 	private List<string> meshNames;
-	
+
+	public GameObject meshObject;
 	
 	public static URDFReader Instance
 	{
@@ -136,6 +137,9 @@ public class URDFReader : MonoBehaviour
 							RobotLink newRobotLink = GameObject.Instantiate(linkPrefab,new Vector3(),Quaternion.identity) as RobotLink;
 							newRobotLink.transform.parent = robot.transform;
 							newRobotLink.gameObject.name = linkName;
+							/*GameObject mesh = GameObject.Instantiate(meshObject) as GameObject;
+							mesh.gameObject.transform.parent = newRobotLink.gameObject.transform;
+							newRobotLink.mesh = mesh;*/
 							RobotLinks.Add(linkName,newRobotLink);
 						}
 						j++;

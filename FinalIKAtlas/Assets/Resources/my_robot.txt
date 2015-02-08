@@ -7,22 +7,25 @@
     <joint name="joint1" type="continuous">
     	<parent link="link1"/>
     	<child link="link2"/>
-    	<origin xyz="5 3 0" rpy="0 0 0" />
+    	<origin xyz="-2 3 0" rpy="0 0 0" />
     	<axis xyz="-0.9 0.15 0" />
+    	<limit effort="200" lower="-0.698132" upper="0.698132" velocity="12"/>
 	</joint>
 	
 	
     <joint name="joint2" type="continuous">
     	<parent link="link1"/>
     	<child link="link3"/>
-    	<origin xyz="-2 5 0" rpy="0 0 1.57" />
-    	<axis xyz="-0.707 0.707 0" />
+    	<origin xyz="1 0 0" rpy="0 0 0" />
+    	<axis xyz=".7 .7 0" />
+    	<limit effort="200" lower="-0.698132" upper="0.698132" velocity="12"/>
 	</joint>
 
 	<joint name="joint3" type="continuous">
 		<parent link="link3"/>
 		<child link="link4"/>
-		<origin xyz="5 0 0" rpy="0 0 -1.57" />
-    	<axis xyz="0.707 -0.707 0" />
+		<origin xyz="0 1.5 0" rpy="0 0 0" />
+    	<axis xyz="1 0 0" />
+   	 	<limit effort="200" lower="-0.698132" upper="0.698132" velocity="12"/>
 	</joint>
 </robot>
