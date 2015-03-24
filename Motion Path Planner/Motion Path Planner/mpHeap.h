@@ -18,13 +18,13 @@ private:
     void Heapify(int index){
         int minChildIndex = 2*index + 1;
         if (minChildIndex < _array.size()){
-            if (2*index + 2 < _array.size() && _array[2*index + 2] < _array[minChildIndex]) minChildIndex = 2*index+2;
+            /*if (2*index + 2 < _array.size() && _array[2*index + 2] < _array[minChildIndex]) minChildIndex = 2*index+2;
             if (_array[minChildIndex] < _array[index]){
                 T temp = _array[index];
                 _array[index] = _array[minChildIndex] ;
                 _array[minChildIndex]  = temp;
                 Heapify(minChildIndex);
-            }
+            }*/
         }
     }
     int size = 0;
@@ -41,12 +41,12 @@ public:
         _array.push_back(element);
         int index = _array.size()-1;
         T parent = _array[(index-1)/2];
-        while (element < parent) {
+        /*while (element < parent) {
             _array[index] = parent;
             index = (index-1)/2;
             _array[index] = element;
             parent =_array[(index-1)/2];
-        }
+        }*/
     }
     void RemoveAt (int index){
         T lastElement = _array[_array.size()-1];
@@ -69,7 +69,7 @@ public:
         } else {
             //TODO throw error
         }
-        return NULL;
+        return _array[0];//NULL; TODO return Null?
     }
     T Extract (){
         T top = LookAt();

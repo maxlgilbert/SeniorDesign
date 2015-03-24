@@ -33,6 +33,10 @@ public class Robot : MonoBehaviour {
 	private List<RobotLink> _skippedLinks;
 
 	public GameObject meshObject;
+	public bool loadIK;
+	public bool fullBody;
+
+	public bool useRotationAngles;
 
 	// Use this for initialization
 	void Awake () {
@@ -94,7 +98,9 @@ public class Robot : MonoBehaviour {
 				skipped = true;
 				SkippedLinks.Add(child);
 				_skippedLinks.Add(child);
-				//Debug.LogError(child.name);
+//				joint.originXYZ.z = -.01f;
+
+				Debug.LogError(child.name);
 			}
 			/*if (parent.name.Equals("pelvis")) {
 				rLH = parent.gameObject.AddComponent<RotationLimitHinge>() as RotationLimitHinge; //TODO parent or child?
@@ -139,6 +145,9 @@ public class Robot : MonoBehaviour {
 
 		// Create mesh transforms for robot
 		RobotLink parentLink = _root;
+//		Vector3 parentPosition = parentLink.gameObject.transform.localScale;
+//		parentPosition.x = - parentPosition.x;
+//		parentLink.gameObject.transform.localScale = parentPosition;
 		CreateMesh(parentLink);
 		//_root.gameObject.transform.position = new Vector3();
 		//_root.gameObject.transform.rotation = Quaternion.Euler(-90.0f,-180.0f,0.0f);
@@ -155,27 +164,39 @@ public class Robot : MonoBehaviour {
 				curr.children[j].parentJoint = parentJoint;
 				curr.children[j].gameObject.transform.parent = parent.gameObject.transform;
 			}
+			if (useRotationAngles) {
+				parent.rotationLimit.enabled=false;
+				RotationLimitAngle rLA = parent.gameObject.AddComponent<RotationLimitAngle>() as RotationLimitAngle;
+				rLA.axis = curr.rotationLimit.axis;
+				rLA.limit = Mathf.Abs(Mathf.Min(curr.rotationLimit.min,curr.rotationLimit.max));
+				Destroy(curr.rotationLimit);
+			}
 			parent.children.Remove(curr);
 			parent.children.AddRange(curr.children);
 		}
+		if (loadIK) {
+			GameObject gameObjectFABRIKRoot = new GameObject();
+			gameObjectFABRIKRoot.transform.parent = gameObject.transform;
+			_FABRIKRoot = gameObjectFABRIKRoot.AddComponent<FABRIKRoot>() as FABRIKRoot;
+			_FABRIKRootSolver = _FABRIKRoot.GetIKSolver() as IKSolverFABRIKRoot;
+			Chain rootChain = new Chain();
+			Chain kinematicChain =  CreateKinematicChain(_root, rootChain);
+		
 
-		GameObject gameObjectFABRIKRoot = new GameObject();
-		gameObjectFABRIKRoot.transform.parent = gameObject.transform;
-		_FABRIKRoot = gameObjectFABRIKRoot.AddComponent<FABRIKRoot>() as FABRIKRoot;
-		_FABRIKRootSolver = _FABRIKRoot.GetIKSolver() as IKSolverFABRIKRoot;
-		Chain rootChain = new Chain();
-		Chain kinematicChain =  CreateKinematicChain(_root, rootChain);
-		_FABRIKChain = new List<FABRIKChain>();
-		LinkMultipleKinematicChains(kinematicChain);
-		_FABRIKRootSolver.chains = new FABRIKChain[_FABRIKChain.Count];
-		for (int i = 0; i < _FABRIKChain.Count; i++) {
-			Chain currChain = _chainDictionary[i];
-			int []indexArray = new int[currChain.childrenChains.Count];
-			for (int j = 0; j < currChain.childrenChains.Count; j++) {
-				indexArray[j] = currChain.childrenChains[j].index;
+			if (fullBody) {
+				_FABRIKChain = new List<FABRIKChain>();
+				LinkMultipleKinematicChains(kinematicChain);
+				_FABRIKRootSolver.chains = new FABRIKChain[_FABRIKChain.Count];
+				for (int i = 0; i < _FABRIKChain.Count; i++) {
+					Chain currChain = _chainDictionary[i];
+					int []indexArray = new int[currChain.childrenChains.Count];
+					for (int j = 0; j < currChain.childrenChains.Count; j++) {
+						indexArray[j] = currChain.childrenChains[j].index;
+					}
+					_FABRIKChain[i].children = indexArray;
+					_FABRIKRootSolver.chains[i] = _FABRIKChain[i];
+				}
 			}
-			_FABRIKChain[i].children = indexArray;
-			_FABRIKRootSolver.chains[i] = _FABRIKChain[i];
 		}
 	}
 
@@ -185,7 +206,12 @@ public class Robot : MonoBehaviour {
 			{
 				childLink.gameObject.transform.parent = parentLink.gameObject.transform;
 				childLink.gameObject.transform.localRotation = Quaternion.Euler(childLink.parentJoint.originRPY);
-				childLink.gameObject.transform.localPosition = childLink.parentJoint.originXYZ;
+				Vector3 newLocation = childLink.parentJoint.originXYZ;
+				if (childLink.parentJoint.parent.name.Equals("pelvis")) {
+					//newLocation.x *= -1;
+				}
+				//childLink.gameObject.transform.localPosition = childLink.parentJoint.originXYZ;
+				childLink.gameObject.transform.localPosition = newLocation;
 				RotationLimitHinge rLH = parentLink.gameObject.AddComponent<RotationLimitHinge>() as RotationLimitHinge; //TODO parent or child?
 				rLH.min = childLink.parentJoint.limitMin*180.0f/Mathf.PI;
 				rLH.max = childLink.parentJoint.limitMax*180.0f/Mathf.PI;

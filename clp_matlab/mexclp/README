@@ -1,0 +1,12 @@
+${MATLABROOT}/bin/mex mexclp.cpp  -I${CLPSOLVER}/include/coin -L${CLPSOLVER}/lib -lClp -lCoinUtils -lbz2
+
+mex mexclp.cpp -I../coin-Clp/include/coin -L../coin-Clp/lib -lClp -lCoinUtils -lbz2
+
+c = -f
+b = t
+Aeq = B
+beq = u
+lb = []
+ub = []
+
+[x,lambda,status] = clp([],c,A,b,Aeq,beq,lb,ub)

@@ -14,7 +14,7 @@
 #include <vector>
 class mpAStarNode{
 public:
-    mpAStarNode();
+    /*mpAStarNode();
     mpAStarNode(const mpAStarNode& other);
     mpAStarNode& operator = (const mpAStarNode& other);
     ~mpAStarNode();
@@ -23,16 +23,16 @@ public:
     std::vector<mpAStarNode> GetNeighbors();
     float GetDistance (const mpAStarNode& other);
     float GetEstimate (const mpAStarNode& other);
-    mpAStarNode* parentNode;
+    mpAStarNode* parentNode;*/
 };
 
 class mpAStar{
 public:
-    mpAStar();
+   /* mpAStar();
     mpAStar(const mpAStar& other);
     mpAStar& operator= (const mpAStar& other);
     ~mpAStar();
-    void findPath (mpAStarNode start, mpAStarNode goal, int maxDepth);
+    void findPath (mpAStarNode start, mpAStarNode goal, int maxDepth);*/
 private:
     
 };

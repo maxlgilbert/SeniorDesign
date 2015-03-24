@@ -8,7 +8,7 @@
 
 #include "mpAStar.h"
 
-mpAStar::mpAStar(){
+/*mpAStar::mpAStar(){
     
 }
 
@@ -30,4 +30,4 @@ void mpAStar::findPath(mpAStarNode start, mpAStarNode goal, int maxDepth){
         }
         depth++;
     }
-}
+}*/

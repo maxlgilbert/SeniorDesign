@@ -218,7 +218,7 @@ public class URDFReader : MonoBehaviour
 			if (line[i].Contains("xyz")){
 				Vector3 xyz = new Vector3();
 				i++;
-				xyz.x = (float)decimal.Parse(line[i]);
+				xyz.x = -(float)decimal.Parse(line[i]);
 				i++;
 				xyz.y = (float)decimal.Parse(line[i]);
 				i++;
@@ -242,7 +242,7 @@ public class URDFReader : MonoBehaviour
 			if (line[i].Contains("xyz")){
 				Vector3 xyz = new Vector3();
 				i++;
-				xyz.x = (float)decimal.Parse(line[i]);
+				xyz.x = -(float)decimal.Parse(line[i]);
 				i++;
 				xyz.y = (float)decimal.Parse(line[i]);
 				i++;

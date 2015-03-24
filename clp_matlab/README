@@ -1,0 +1,40 @@
+mex -v clpmex.cpp -Icoin-Clp/include/coin -Icoin-Clp/CoinUtils/src -Icoin-Clp/Clp/src -Lcoin-Clp/lib -lClp -lCoinUtils -largeArrayDims -lut -lbz2
+
+
+
+
+%   Input arguments:
+%       H - quadratic objective matrix (sparse, tril, optional)
+%       c,f - linear objective vector
+%       A - linear constraint matrix (sparse)
+%       rl - linear constraint lhs
+%       ru - linear constraint rhs
+%       lb - decision variable lower bounds (optional)
+%       ub - decision variable upper bounds (optional)
+%       opts - solver options (see below) 
+
+
+
+H = []
+lb = []
+ub = []
+
+% Merge constraints
+A1 = [B;A] 
+ru = [u;t]
+
+COIN_DBL_MAX = 1000000 %max of double
+rl = -COIN_DBL_MAX*ones(size(ru))
+
+rl(1:size(u,1)) = ru(1:size(u,1));
+
+opts = [];
+opts.display = 1;
+opts.maxiter = 30000;
+opts.algorithm = 'automatic';
+opts.numThreads = 4;
+opts.maxtime = 3000;
+opts.warnings = 'all';
+opts.tolrfun = 1.0000e-07;
+
+[x,fval,exitflag,info] = opti_clp(H,-f,A1,rl,ru,lb,ub,opts)
