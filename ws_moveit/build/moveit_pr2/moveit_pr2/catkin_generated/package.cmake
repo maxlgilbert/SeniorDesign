@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "moveit_pr2")
+set(moveit_pr2_MAINTAINER "Ioan Sucan <isucan@willowgarage.com>, Michael Ferguson <mferguson@fetchrobotics.com>")
+set(moveit_pr2_DEPRECATED "")
+set(moveit_pr2_VERSION "0.6.1")
+set(moveit_pr2_BUILD_DEPENDS )
+set(moveit_pr2_RUN_DEPENDS "pr2_moveit_plugins" "pr2_moveit_config" "pr2_moveit_tutorials")
+set(moveit_pr2_BUILDTOOL_DEPENDS "catkin")
