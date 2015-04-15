@@ -1,0 +1,8 @@
+prefix=/home/canine2/ws_moveit/devel
+
+Name: pr2_moveit_tests
+Description: Description of pr2_moveit_tests
+Version: 0.6.1
+Cflags: 
+Libs: -L/home/canine2/ws_moveit/devel/lib 
+Requires: 
