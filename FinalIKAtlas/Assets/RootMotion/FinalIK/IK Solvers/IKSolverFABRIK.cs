@@ -104,7 +104,7 @@ using System;
 		/*
 		 * If true, the solver will work with 0 length bones
 		 * */
-		protected override bool boneLengthCanBeZero { get { return false; }} // Returning false here also ensures that the bone lengths will be calculated
+		protected override bool boneLengthCanBeZero { get { return true; }} //TODO CHANGED THIS Returning false here also ensures that the bone lengths will be calculated
 
 		/*
 		 * Check if bones have moved from last solved positions

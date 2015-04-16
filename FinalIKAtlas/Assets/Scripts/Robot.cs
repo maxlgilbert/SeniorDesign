@@ -94,14 +94,14 @@ public class Robot : MonoBehaviour {
 			}
 			//RotationLimitHinge rLH = null;
 			bool skipped = false;
-			if (joint.originXYZ == new Vector3()) {
+			/*if (joint.originXYZ == new Vector3()) {
 				skipped = true;
 				SkippedLinks.Add(child);
 				_skippedLinks.Add(child);
 //				joint.originXYZ.z = -.01f;
 
 				Debug.LogError(child.name);
-			}
+			}*/
 			/*if (parent.name.Equals("pelvis")) {
 				rLH = parent.gameObject.AddComponent<RotationLimitHinge>() as RotationLimitHinge; //TODO parent or child?
 				rLH.min = 0.0f;
