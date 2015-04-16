@@ -51,16 +51,16 @@ public class Robot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*if (!_rotationLimits[0].enabled) {
+		if (_rotationLimits.Count>0 && !_rotationLimits[0].enabled) {
 			for (int i = 0; i < _rotationLimits.Count; i++) {
-				//_rotationLimits[i].enabled=true;
+				_rotationLimits[i].enabled=true;
 			}
 		}
-		if (!_fabriks[0].enabled) {
+		if (_fabriks.Count>0&&!_fabriks[0].enabled) {
 			for (int i = 0; i < _fabriks.Count; i++) {
-				//_fabriks[i].enabled=true;
+				_fabriks[i].enabled=true;
 			}
-		}*/
+		}
 		if (_robotLinks != null){
 			if(Input.GetKeyDown(KeyCode.P)) {
 				_robotInfo += _frame + "\n";
@@ -390,13 +390,13 @@ public class Robot : MonoBehaviour {
 			for (int j =0; j < progeny.Count; j++) {
 				solver.bones[j] = new IKSolver.Bone(progeny[j].gameObject.transform);
 			}
-			/*Vector3 endEffectorPosition = progeny[progeny.Count-1].gameObject.transform.position;
+			Vector3 endEffectorPosition = progeny[progeny.Count-1].gameObject.transform.position;
 			Transform targetTransform = GameObject.Instantiate(URDFReader.Instance.endEffectorPrefab,
 			                                                   endEffectorPosition,
 			                                                   Quaternion.identity) as Transform;
 			targetTransform.name = root.name + " end effector";
-			//solver.target = targetTransform;
-			targetTransform.parent = gameObject.transform;*/
+			solver.target = targetTransform;
+			targetTransform.parent = gameObject.transform;
 		}
 		return currChain;
 	}
