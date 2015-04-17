@@ -10,7 +10,7 @@ public class URDFReader : MonoBehaviour
 	public RobotLink linkPrefab;
 	public RobotJoint jointPrefab;
 	public Robot robotPrefab;
-	public Transform endEffectorPrefab;
+	public RobotEndEffector endEffectorPrefab;
 	private List<string> links;
 	[HideInInspector] public Dictionary<string,RobotLink> RobotLinks;
 	[HideInInspector] public Dictionary<string,RobotJoint> RobotJoints;

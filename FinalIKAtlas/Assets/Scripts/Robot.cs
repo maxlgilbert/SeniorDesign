@@ -31,10 +31,17 @@ public class Robot : MonoBehaviour {
 	private int _frame = 1;
 	private string _robotInfo = "";
 	private List<RobotLink> _skippedLinks;
+	
+	public List<RobotEndEffector> endEffectorPrefabs;
+	private Dictionary<string,RobotEndEffector> _endEffectors;
+	private Dictionary<string,List<Vector3>> _endEffectorTargets;
+
+	public float speed = 1.0f;
 
 	public GameObject meshObject;
 	public bool loadIK;
 	public bool fullBody;
+
 
 	public bool useRotationAngles;
 
@@ -47,8 +54,17 @@ public class Robot : MonoBehaviour {
 		_rotationLimits = new List<RotationLimit>();
 		_fabriks = new List<FABRIK>();
 		_skippedLinks = new List<RobotLink>();
+		_endEffectors = new Dictionary<string, RobotEndEffector>();
+		_endEffectorTargets = new Dictionary<string, List<Vector3>>();
+		foreach(RobotEndEffector rEE in endEffectorPrefabs) {
+			/*RobotEndEffector endEffect = GameObject.Instantiate(rEE,
+			                                                    new Vector3(),
+			                                                    Quaternion.identity) as RobotEndEffector;*/
+			_endEffectors[rEE.name] = rEE;
+		}
 	}
-	
+
+	private float yValue = 0.0f;
 	// Update is called once per frame
 	void Update () {
 		if (_rotationLimits.Count>0 && !_rotationLimits[0].enabled) {
@@ -391,12 +407,17 @@ public class Robot : MonoBehaviour {
 				solver.bones[j] = new IKSolver.Bone(progeny[j].gameObject.transform);
 			}
 			Vector3 endEffectorPosition = progeny[progeny.Count-1].gameObject.transform.position;
-			Transform targetTransform = GameObject.Instantiate(URDFReader.Instance.endEffectorPrefab,
-			                                                   endEffectorPosition,
-			                                                   Quaternion.identity) as Transform;
-			targetTransform.name = root.name + " end effector";
-			solver.target = targetTransform;
-			targetTransform.parent = gameObject.transform;
+			RobotEndEffector endEffector;
+			if (_endEffectors.TryGetValue(root.name+ "EndEffector",out endEffector)){
+				/*RobotEndEffector targetTransform = GameObject.Instantiate(endEffectorPrefab,
+				                                                   endEffectorPosition,
+				                                                   Quaternion.identity) as RobotEndEffector;*/
+				endEffector.transform.position = endEffectorPosition;
+				//end.name = root.name + " end effector";
+				solver.target = endEffector.transform;
+				//targetTransform.transform.parent = gameObject.transform;
+				//_endEffectors[targetTransform.name] = targetTransform;
+			}
 		}
 		return currChain;
 	}
