@@ -4,16 +4,18 @@ using System.Collections.Generic;
 
 public class RobotEndEffector : MonoBehaviour {
 	public Vector3 velocity;
-	public List<Vector3> _targets;
+	private List<Vector3> _targets;
 	public float speed = 10.0f;
 	public float frameConstant = 300.0f;
 	private Vector3 effectorVelocity;
 	//private Vector3 _currentTarget;
 	private int _currentTarget = -1;
 	public float epsilon = .01f;
+	public string moCapName = "";
 	// Use this for initialization
 	void Awake () {
 		//_currentTarget = new Vector3();
+		_targets = new List<Vector3>();
 	}
 	void Start () {
 	}
@@ -22,7 +24,10 @@ public class RobotEndEffector : MonoBehaviour {
 	void FixedUpdate () {
 		
 		if (Input.GetKeyDown(KeyCode.P)&&_currentTarget<0) {
-			UpdateTarget();
+			if (!string.IsNullOrEmpty(moCapName)){
+				this._targets = MoCapReader.instance.effectorPositions[moCapName];
+				UpdateTarget();
+			}
 		}
 		
 		if (_targets.Count>_currentTarget){
