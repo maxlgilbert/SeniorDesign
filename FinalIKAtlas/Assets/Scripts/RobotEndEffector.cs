@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class RobotEndEffector : MonoBehaviour {
 	public Vector3 velocity;
-	private List<Vector3> _targets;
-	public float speed = 10.0f;
+	public List<Vector3> _targets;
+	private float speed = .050f;
 	public float frameConstant = 300.0f;
 	private Vector3 effectorVelocity;
 	//private Vector3 _currentTarget;
@@ -46,7 +46,7 @@ public class RobotEndEffector : MonoBehaviour {
 	public void UpdateTarget(){
 		
 		if (_targets.Count>_currentTarget+1){
-			Debug.LogError("Switched");
+			//Debug.LogError("Switched");
 			_currentTarget++;
 			effectorVelocity = (_targets[_currentTarget]-gameObject.transform.position)/(speed*frameConstant);
 		}

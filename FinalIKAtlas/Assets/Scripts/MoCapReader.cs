@@ -8,7 +8,7 @@ using System.Globalization;
 public class MoCapReader : MonoBehaviour {
 	
 	public string fileName;
-	public int frameDensity = 15;
+	public int frameDensity = 5;
 	public Dictionary<string,List<Vector3>> effectorPositions;
 	public static MoCapReader instance;
 	
@@ -42,18 +42,18 @@ public class MoCapReader : MonoBehaviour {
 					if (framesUsed%frameDensity==0) {
 						float.TryParse(line[1],out yPosition);
 						float.TryParse(line[2],out zPosition);
-						Vector3 position = new Vector3(xPosition, yPosition, zPosition);
-						currTargets.Add(position);
+						Vector3 position = new Vector3(xPosition, yPosition-.5f, zPosition-.5f);
+						effectorPositions[currJoint].Add(position);
 					}
 					//Debug.LogError(position);
 				} else {
 					if (line.Length>1){
-						if(!String.IsNullOrEmpty(currJoint)){
-							effectorPositions.Add(currJoint,currTargets);
-						}
 						currJoint = line[1];
-						currTargets = new List<Vector3>();
-						Debug.LogError(line[1]);
+						if(!String.IsNullOrEmpty(currJoint)){
+							Debug.LogError(currJoint);
+							currTargets = new List<Vector3>();
+							effectorPositions[currJoint]=currTargets;
+						}
 					}
 				}
 			}
