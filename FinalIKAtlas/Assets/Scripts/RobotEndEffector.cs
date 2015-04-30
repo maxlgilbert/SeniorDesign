@@ -18,7 +18,7 @@ public class RobotEndEffector : MonoBehaviour {
 	private FABRIK fabrik;
 	public int chainNumber;
 	private int _currentFrame = 0;
-	private int _timeScale = 3;
+	private int _timeScale = 1;
 	private GameObject _endEffectorObject;
 	// Use this for initialization
 	void Awake () {
