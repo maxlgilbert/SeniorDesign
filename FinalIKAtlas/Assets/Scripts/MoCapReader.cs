@@ -8,7 +8,7 @@ using System.Globalization;
 public class MoCapReader : MonoBehaviour {
 	
 	public string fileName;
-	public int frameDensity = 5;
+	public int frameDensity = 1;
 	public Dictionary<string,List<Vector3>> effectorPositions;
 	public static MoCapReader instance;
 	
