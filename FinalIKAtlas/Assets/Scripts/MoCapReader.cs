@@ -42,7 +42,7 @@ public class MoCapReader : MonoBehaviour {
 					if (framesUsed%frameDensity==0) {
 						float.TryParse(line[1],out yPosition);
 						float.TryParse(line[2],out zPosition);
-						float scale = 2.0f;
+						float scale = 1.0f;
 						Vector3 position = new Vector3(xPosition, yPosition, zPosition);
 						position = position * scale;
 						/*position.x += -1.3f;
