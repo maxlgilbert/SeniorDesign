@@ -57,14 +57,16 @@ public class RobotEndEffector : MonoBehaviour {
 
 	public void UpdateTarget(){
 		
-		if (_targets.Count>_currentTarget+1){
+		if (_targets.Count > _currentTarget + 1) {
 			//Debug.LogError("Switched");
 			_currentTarget++;
-			fabrik.solver.IKPosition =  _targets[_currentTarget];
-			_endEffectorObject.transform.position = _targets[_currentTarget];
+			fabrik.solver.IKPosition = _targets [_currentTarget];
+			_endEffectorObject.transform.position = _targets [_currentTarget];
 			//Debug.LogError(_targets[_currentTarget]);
 			//effectorVelocity = (_targets[_currentTarget]-fabrik.solver.IKPosition )/(speed*frameConstant);
 			//StartCoroutine("SwitchTarget");
+		} else {
+			Debug.LogError("Done!");
 		}
 	}
 

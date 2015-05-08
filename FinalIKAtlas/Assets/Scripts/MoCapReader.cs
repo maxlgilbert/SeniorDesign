@@ -8,6 +8,7 @@ using System.Globalization;
 public class MoCapReader : MonoBehaviour {
 	
 	public string fileName;
+	public string mocapNumber;
 	public int frameDensity = 1;
 	public Dictionary<string,List<Vector3>> effectorPositions;
 	public static MoCapReader instance;
@@ -23,7 +24,7 @@ public class MoCapReader : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		instance = this;
-		using (StreamReader sr = new StreamReader(fileName))
+		using (StreamReader sr = new StreamReader(fileName + mocapNumber + ".txt"))
 		{
 			int framesUsed = 0;
 			sr.ReadLine();
